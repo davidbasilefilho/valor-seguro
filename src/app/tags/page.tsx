@@ -57,7 +57,7 @@ export default function TagsPage() {
   );
 }
 
-export function TagsPageContent() {
+function TagsPageContent() {
   const authState = useAuthState({ refetchInterval: 1000 });
   const tags = useSelectTags({ refetchInterval: 1000 });
   const deleteTag = useDeleteTagById();

@@ -35,7 +35,7 @@ export default function LoginPage() {
   );
 }
 
-export function LoginPageContent() {
+function LoginPageContent() {
   const loginMutation = useAuthSignIn();
   const signUpMutation = useAuthSignUp();
   const { data: authState, isLoading, refetch } = useAuthState({});

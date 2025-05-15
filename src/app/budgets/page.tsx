@@ -57,7 +57,7 @@ export default function BudgetsPage() {
   );
 }
 
-export function BudgetsPageContent() {
+function BudgetsPageContent() {
   const authState = useAuthState({ refetchInterval: 1000 });
   const tags = useSelectTags({ refetchInterval: 1000 });
   const deleteTag = useDeleteTagById();

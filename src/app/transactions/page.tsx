@@ -63,7 +63,7 @@ export default function TransactionPage() {
   );
 }
 
-export function TransactionPageContent() {
+function TransactionPageContent() {
   const authState = useAuthState({ refetchInterval: 1000 });
   const transactions = useSelectTransactions({ refetchInterval: 1000 });
   const deleteTransaction = useDeleteTransactionById();
