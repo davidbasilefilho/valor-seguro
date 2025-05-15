@@ -8,6 +8,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({
             <SidebarInset className="bg-gradient-to-br from-background via-accent/0 to-background">
               <SidebarTrigger className="ml-4 mt-4 mr-6 mb-6" />
               <main>{children}</main>
+              <Toaster />
             </SidebarInset>
           </SidebarProvider>
         </ThemeProvider>

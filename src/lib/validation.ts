@@ -33,3 +33,91 @@ export const signUpSchema = z
   });
 
 export type SignUpSchemaType = z.infer<typeof signUpSchema>;
+
+export const tagInsertSchema = z.object({
+  title: z
+    .string()
+    .min(3, "Nome deve ter no mínimo 3 caracteres")
+    .max(20, "Nome deve ter no máximo 20 caracteres"),
+});
+
+export type tagInsertSchemaType = z.infer<typeof tagInsertSchema>;
+
+export const tagSchema = tagInsertSchema.extend({
+  id: z.string().optional(),
+  created_at: z.string().optional(),
+  user_id: z.string().optional().nullable(),
+});
+
+export type TagSchemaType = z.infer<typeof tagSchema>;
+
+export const transactionInsertSchema = z.object({
+  date: z.string({ message: "Data inválida" }),
+  value: z.number({ message: "Valor inválido" }),
+  description: z.string().nullable(),
+  type_id: z.string(),
+  title: z.string().min(3, "Nome deve ter no mínimo 3 caracteres"),
+});
+
+export type TransactionInsertSchemaType = z.infer<
+  typeof transactionInsertSchema
+>;
+
+export const transactionSchema = transactionInsertSchema.extend({
+  id: z.string().optional(),
+  created_at: z.string().optional(),
+  user_id: z.string().optional().nullable(),
+});
+
+export type TransactionSchemaType = z.infer<typeof transactionSchema>;
+
+export const transactionTypeSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  created_at: z.string(),
+  description: z.string().nullable(),
+});
+
+export type TransactionTypeSchemaType = z.infer<typeof transactionTypeSchema>;
+
+export const budgetInsertSchema = z.object({
+  title: z.string().min(3, "Nome deve ter no mínimo 3 caracteres"),
+  deadline: z.string({ message: "Data inválida" }),
+  description: z.string().nullable(),
+  limit: z.number(),
+});
+
+export type BudgetInsertSchemaType = z.infer<typeof budgetInsertSchema>;
+
+export const budgetSchema = budgetInsertSchema.extend({
+  id: z.string().optional(),
+  created_at: z.string().optional(),
+  user_id: z.string().optional().nullable(),
+});
+
+export type BudgetSchemaType = z.infer<typeof budgetSchema>;
+
+export const budgetTagSchema = z.object({
+  id: z.number().nullable(),
+  created_at: z.string().nullable(),
+  budget_id: z.string(),
+  tag_id: z.string(),
+});
+
+export type BudgetTagSchemaType = z.infer<typeof budgetTagSchema>;
+
+export const transactionTagSchema = z.object({
+  id: z.number().nullable(),
+  created_at: z.string().nullable(),
+  transaction_id: z.string(),
+  tag_id: z.string(),
+});
+export type TransactionTagSchemaType = z.infer<typeof transactionTagSchema>;
+
+export const transactionTagFormSchema = z.object({
+  transaction_tags: z.array(transactionTagSchema),
+});
+
+export type TransactionTagFormSchemaType = z.infer<
+  typeof transactionTagFormSchema
+>;

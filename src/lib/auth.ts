@@ -1,6 +1,13 @@
 import { createClient } from "@/app/utils/supabase/client";
-import { useMutation, useQuery, UseQueryOptions } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  UseQueryOptions,
+} from "@tanstack/react-query";
 import { LoginSchemaType, SignUpSchemaType } from "./validation";
+import { toast } from "sonner";
+import { supabase } from "./db";
 
 export const useAuthState = ({
   refetchInterval = false,
@@ -18,7 +25,6 @@ export const useAuthState = ({
     enabled,
     retry,
     queryFn: async () => {
-      const supabase = createClient();
       const {
         data: { session },
         error,
@@ -43,7 +49,6 @@ export const useAuthSession = ({
     retry,
     enabled,
     queryFn: async () => {
-      const supabase = createClient();
       const {
         data: { session },
         error,
@@ -58,7 +63,6 @@ export const useAuthSignIn = () =>
   useMutation({
     mutationKey: ["authSignIn"],
     mutationFn: async ({ email, password }: LoginSchemaType) => {
-      const supabase = createClient();
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -67,23 +71,25 @@ export const useAuthSignIn = () =>
 
       return data;
     },
+    onSuccess: () => toast("Login realizado com sucesso!"),
+    onError: (error) => toast.error("Erro entrar na conta: " + error.message),
   });
 
 export const useAuthSignOut = () =>
   useMutation({
     mutationKey: ["authSignOut"],
     mutationFn: async () => {
-      const supabase = createClient();
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
     },
+    onSuccess: () => toast("Logout realizado com sucesso!"),
+    onError: (error) => toast.error("Erro ao sair da conta: " + error.message),
   });
 
 export const useAuthSignUp = () =>
   useMutation({
     mutationKey: ["authSignUp"],
     mutationFn: async ({ email, password, username }: SignUpSchemaType) => {
-      const supabase = createClient();
       const {
         data: { user },
         error,
@@ -102,6 +108,9 @@ export const useAuthSignUp = () =>
       ]);
       if (userError) throw userError;
     },
+    onSuccess: () => toast("Cadastro realizado com sucesso!"),
+    onError: (error) =>
+      toast.error("Erro ao cadastrar conta: " + error.message),
   });
 
 export const useAuthUser = ({
@@ -120,7 +129,6 @@ export const useAuthUser = ({
     retry,
     refetchInterval,
     queryFn: async () => {
-      const supabase = createClient();
       const { data, error } = await supabase.auth.getUser();
       if (error) throw error;
 
@@ -144,7 +152,6 @@ export const useAuthUserData = ({
     enabled,
     retry,
     queryFn: async () => {
-      const supabase = createClient();
       const { data: userData, error: userError } =
         await supabase.auth.getUser();
       if (userError) throw userError;
@@ -180,7 +187,6 @@ export const useAuthUserById = (
     enabled,
     retry,
     queryFn: async () => {
-      const supabase = createClient();
       const { data, error } = await supabase
         .from("users")
         .select("*")
