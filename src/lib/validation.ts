@@ -98,8 +98,8 @@ export const budgetSchema = budgetInsertSchema.extend({
 export type BudgetSchemaType = z.infer<typeof budgetSchema>;
 
 export const budgetTagSchema = z.object({
-  id: z.number().nullable(),
-  created_at: z.string().nullable(),
+  id: z.number().optional(),
+  created_at: z.string().optional(),
   budget_id: z.string(),
   tag_id: z.string(),
 });
@@ -107,8 +107,8 @@ export const budgetTagSchema = z.object({
 export type BudgetTagSchemaType = z.infer<typeof budgetTagSchema>;
 
 export const transactionTagSchema = z.object({
-  id: z.number().nullable(),
-  created_at: z.string().nullable(),
+  id: z.number().optional(),
+  created_at: z.string().optional(),
   transaction_id: z.string(),
   tag_id: z.string(),
 });

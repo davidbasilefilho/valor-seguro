@@ -205,7 +205,7 @@ export function TransactionPageContent() {
                         </DialogTrigger>
                         <DialogContent className="px-4 py-4">
                           <DialogTitle>
-                            Editar rótulo "{row.getValue("title")}"
+                            Editar rótulo &quot;{row.getValue("title")}&quot;
                           </DialogTitle>
                           <DialogDescription>
                             Use este formulário para editar uma transação
@@ -248,7 +248,8 @@ export function TransactionPageContent() {
                             </AlertDialogTitle>
                             <AlertDialogDescription>
                               Esta ação não pode ser desfeita. Você irá excluir
-                              o rótulo {row.getValue("title")} permanentemente.
+                              o rótulo &quot;{row.getValue("title")}&quot;
+                              permanentemente.
                             </AlertDialogDescription>
                           </AlertDialogHeader>
 
@@ -286,7 +287,7 @@ export function TransactionPageContent() {
                         </SheetTrigger>
                         <SheetContent className="px-4 py-4">
                           <SheetTitle>
-                            Editar rótulo "{row.getValue("title")}"
+                            Editar rótulo &quot;{row.getValue("title")}&quot;
                           </SheetTitle>
                           <SheetDescription>
                             Use este formulário para editar um rótulo existente,

@@ -52,7 +52,7 @@ export const useSelectTags = ({
       const { data, error } = await supabase
         .from("tag")
         .select("*")
-        .eq("user_id", user?.id!);
+        .eq("user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -80,7 +80,7 @@ export const useSelectTagById = (
         .from("tag")
         .select("*")
         .eq("id", tagId)
-        .eq("user_id", user?.id!)
+        .eq("user_id", user?.id ?? "")
         .single();
       if (error) throw error;
       return data;
@@ -99,7 +99,7 @@ export const useInsertTag = () =>
 
       const { data, error } = await supabase
         .from("tag")
-        .insert({ ...tag, user_id: user?.id! });
+        .insert({ ...tag, user_id: user?.id ?? "" });
       if (error) throw error;
       return data;
     },
@@ -122,7 +122,7 @@ export const useUpdateTagById = () =>
         .from("tag")
         .update(tag)
         .eq("id", tag.id!)
-        .eq("user_id", user?.id!);
+        .eq("user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -158,7 +158,7 @@ export const useSelectTransactions = (options: CustomQueryOptions) =>
       const { data, error } = await supabase
         .from("transaction")
         .select("*")
-        .eq("user_id", user?.id!);
+        .eq("user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -184,7 +184,7 @@ export const useSelectTransactionById = (
         .from("transaction")
         .select("*")
         .eq("id", transactionId)
-        .eq("user_id", user?.id!)
+        .eq("user_id", user?.id ?? "")
         .single();
       if (error) throw error;
       return data;
@@ -204,7 +204,7 @@ export const useInsertTransaction = () =>
 
       const { data, error } = await supabase
         .from("transaction")
-        .insert({ ...transaction, user_id: user?.id! });
+        .insert({ ...transaction, user_id: user?.id ?? "" });
       if (error) throw error;
       return data;
     },
@@ -215,7 +215,7 @@ export const useInsertTransaction = () =>
 
 export const useUpdateTransactionById = () =>
   useMutation({
-    mutationFn: async (transaction: any) => {
+    mutationFn: async (transaction: TransactionSchemaType) => {
       const {
         data: { user },
         error: userError,
@@ -225,9 +225,9 @@ export const useUpdateTransactionById = () =>
 
       const { data, error } = await supabase
         .from("transaction")
-        .update(transaction)
+        .update({ ...transaction, user_id: user?.id ?? undefined })
         .eq("id", transaction.id!)
-        .eq("user_id", user?.id!);
+        .eq("user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -301,7 +301,7 @@ export const useSelectBudgets = (options: CustomQueryOptions) =>
       const { data, error } = await supabase
         .from("budget")
         .select("*")
-        .eq("user_id", user?.id!);
+        .eq("user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -326,7 +326,7 @@ export const useSelectBudgetById = (
         .from("budget")
         .select("*")
         .eq("id", budgetId)
-        .eq("user_id", user?.id!)
+        .eq("user_id", user?.id ?? "")
         .single();
       if (error) throw error;
       return data;
@@ -345,7 +345,7 @@ export const useInsertBudget = () =>
 
       const { data, error } = await supabase
         .from("budget")
-        .insert({ ...budget, user_id: user?.id! });
+        .insert({ ...budget, user_id: user?.id ?? "" });
       if (error) throw error;
       return data;
     },
@@ -366,9 +366,9 @@ export const useUpdateBudgetById = () =>
 
       const { data, error } = await supabase
         .from("budget")
-        .update({ ...budget, user_id: user?.id! })
+        .update({ ...budget, user_id: user?.id ?? "" })
         .eq("id", budget.id!)
-        .eq("user_id", user?.id!);
+        .eq("user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -407,7 +407,7 @@ export const useSelectBudgetTags = (options: CustomQueryOptions) =>
       const { data, error } = await supabase
         .from("budget_tags")
         .select("*, budget!inner(user_id)")
-        .eq("budget.user_id", user?.id!);
+        .eq("budget.user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -442,7 +442,7 @@ export const useInsertBudgetTags = () =>
 
       const { data, error } = await supabase
         .from("budget_tags")
-        .insert({ ...budgetTag, user_id: user?.id! });
+        .insert({ ...budgetTag });
       if (error) throw error;
       return data;
     },
@@ -467,7 +467,7 @@ export const useSelectTransactionTags = (options: CustomQueryOptions) =>
       const { data, error } = await supabase
         .from("transaction_tags")
         .select("*, transaction!inner(user_id)")
-        .eq("transaction.user_id", user?.id!);
+        .eq("transaction.user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -493,7 +493,7 @@ export const useSelectTransactionTagsById = (
         .from("transaction_tags")
         .select("*, transaction!inner(user_id)")
         .eq("id", transactionTagId)
-        .eq("transaction.user_id", user?.id!);
+        .eq("transaction.user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -555,7 +555,7 @@ export const useSelectTransactionsFromLastMonth = (
       const { data, error } = await supabase
         .from("transaction")
         .select("*, user!inner(id)")
-        .eq("user.id", user?.id!)
+        .eq("user.id", user?.id ?? "")
         .gte("created_at", new Date(Date.now() - 30 * 24 * 60 * 60 * 1000))
         .lt("created_at", new Date());
       if (error) throw error;
@@ -581,7 +581,7 @@ export const useSelectTransactionsFromLastWeek = (
       const { data, error } = await supabase
         .from("transaction")
         .select("*, user!inner(id)")
-        .eq("user.id", user?.id!)
+        .eq("user.id", user?.id ?? "")
         .gte("created_at", new Date(Date.now() - 7 * 24 * 60 * 60 * 1000))
         .lt("created_at", new Date());
       if (error) throw error;
@@ -607,7 +607,7 @@ export const useSelectTransactionsFromLastYear = (
       const { data, error } = await supabase
         .from("transaction")
         .select("*, user!inner(id)")
-        .eq("user.id", user?.id!)
+        .eq("user.id", user?.id ?? "")
         .gte("created_at", new Date(Date.now() - 365 * 24 * 60 * 60 * 1000))
         .lt("created_at", new Date());
       if (error) throw error;
@@ -634,7 +634,7 @@ export const useSelectTransactionsBeforeDate = (
       const { data, error } = await supabase
         .from("transaction")
         .select("*, user!inner(id)")
-        .eq("user.id", user?.id!)
+        .eq("user.id", user?.id ?? "")
         .lt("created_at", date);
       if (error) throw error;
       return data;
@@ -657,7 +657,7 @@ export const useSelectTransactionTagsJoin = (options: CustomQueryOptions) =>
       const { data, error } = await supabase
         .from("transaction_tags")
         .select("*, transaction!inner(*), tag!inner(*)")
-        .eq("transaction.user_id", user?.id!);
+        .eq("transaction.user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },
@@ -678,7 +678,7 @@ export const useSelectBudgetTagsJoin = (options: CustomQueryOptions) =>
       const { data, error } = await supabase
         .from("budget_tags")
         .select("*, budget!inner(*), tag!inner(*)")
-        .eq("budget.user_id", user?.id!);
+        .eq("budget.user_id", user?.id ?? "");
       if (error) throw error;
       return data;
     },

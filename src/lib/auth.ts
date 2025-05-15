@@ -1,13 +1,7 @@
-import { createClient } from "@/app/utils/supabase/client";
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-  UseQueryOptions,
-} from "@tanstack/react-query";
-import { LoginSchemaType, SignUpSchemaType } from "./validation";
+import { useMutation, useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { supabase } from "./db";
+import { LoginSchemaType, SignUpSchemaType } from "./validation";
 
 export const useAuthState = ({
   refetchInterval = false,

@@ -49,7 +49,6 @@ export default function TagsForm({
   const insertTransaction = useInsertTransaction();
   const updateTransaction = useUpdateTransactionById();
   const selectTransactionTypes = useSelectTransactionTypes({});
-  const insertTransactionTags = useInsertTransactionTags();
   const selectTags = useSelectTags({});
 
   const form = useForm<TransactionSchemaType>({
@@ -101,8 +100,6 @@ export default function TagsForm({
     control: transactionTagsForm.control,
     name: "transaction_tags",
   });
-
-  const onTagsSubmit = async (data: TransactionTagFormSchemaType) => {};
 
   if (selectTransactionTypes.isError) {
     return <div>Erro ao carregar os tipos de transação</div>;
@@ -271,7 +268,7 @@ export default function TagsForm({
       </Form>
       <Form {...transactionTagsForm}>
         <form
-          {...transactionTagsForm.handleSubmit(onTagsSubmit)}
+          onSubmit={transactionTagsForm.handleSubmit(() => {})}
           className="flex gap-4 flex-col"
         >
           <div className="flex flex-row items-center justify-between">
@@ -285,8 +282,8 @@ export default function TagsForm({
                 transactionTagsField.append({
                   tag_id: "",
                   transaction_id: form.getValues("id")!,
-                  created_at: null,
-                  id: null,
+                  created_at: undefined,
+                  id: undefined,
                 })
               }
             >
