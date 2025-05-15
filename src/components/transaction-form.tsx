@@ -1,6 +1,5 @@
 import {
   useInsertTransaction,
-  useInsertTransactionTags,
   useSelectTags,
   useSelectTransactionTagsById,
   useSelectTransactionTypes,

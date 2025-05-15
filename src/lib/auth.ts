@@ -21,7 +21,6 @@ export const useAuthState = ({
     queryFn: async () => {
       const {
         data: { session },
-        error,
       } = await supabase.auth.getSession();
       return session ? true : false;
     },

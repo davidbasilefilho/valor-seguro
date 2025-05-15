@@ -12,17 +12,6 @@ import {
 } from "./validation";
 
 export const supabase = createClient();
-const changes = supabase
-  .channel("schema-db-changes")
-  .on(
-    "postgres_changes",
-    {
-      schema: "public", // Subscribes to the "public" schema in Postgres
-      event: "*", // Listen to all changes
-    },
-    (payload) => console.log(payload)
-  )
-  .subscribe();
 
 export type CustomQueryOptions = {
   refetchInterval?: number | false;
@@ -433,13 +422,6 @@ export const useDeleteBudgetTagsById = () =>
 export const useInsertBudgetTags = () =>
   useMutation({
     mutationFn: async (budgetTag: BudgetTagSchemaType) => {
-      const {
-        data: { user },
-        error: userError,
-      } = await supabase.auth.getUser();
-
-      if (userError) throw userError;
-
       const { data, error } = await supabase
         .from("budget_tags")
         .insert({ ...budgetTag });

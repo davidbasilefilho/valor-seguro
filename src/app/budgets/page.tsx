@@ -140,7 +140,7 @@ export function BudgetsPageContent() {
                         </DialogTrigger>
                         <DialogContent className="px-4 py-4">
                           <DialogTitle>
-                            Editar rótulo "{row.getValue("title")}"
+                            Editar rótulo &quot;{row.getValue("title")}&quot;
                           </DialogTitle>
                           <DialogDescription>
                             Use este formulário para editar um rótulo existente,
@@ -216,7 +216,7 @@ export function BudgetsPageContent() {
                         </SheetTrigger>
                         <SheetContent className="px-4 py-4">
                           <SheetTitle>
-                            Editar rótulo "{row.getValue("title")}"
+                            Editar rótulo &quot;{row.getValue("title")}&quot;
                           </SheetTitle>
                           <SheetDescription>
                             Use este formulário para editar um rótulo existente,
