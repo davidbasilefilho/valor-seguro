@@ -1,14 +1,15 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { BarChart, Target, TrendingDown } from "lucide-react";
+import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 
 export default function About() {
 	return (
 		<div className="container mx-auto px-4 py-8">
-			<h1 className="text-4xl font-bold text-center mb-12 text-primary">
+			<h1 className="text-4xl font-bold text-left md:text-left mb-12 text-primary">
 				Sobre o Valor Seguro
 			</h1>
 
 			<section className="mb-10">
-				<h2 className="text-2xl font-semibold mb-4 text-accent-foreground">
+				<h2 className="text-2xl font-semibold mb-4 text-accent-foreground text-left">
 					Assuma o Controle de Suas Finanças
 				</h2>
 				<p className="text-lg text-muted-foreground leading-relaxed">
@@ -23,58 +24,34 @@ export default function About() {
 			</section>
 
 			<section className="mb-10">
-				<h2 className="text-2xl font-semibold mb-4 text-accent-foreground">
+				<h2 className="text-2xl font-semibold mb-4 text-accent-foreground text-left">
 					Como o Valor Seguro Ajuda Você
 				</h2>
-				<div className="grid md:grid-cols-3 gap-8">
-					<Card>
-						<CardHeader>
-							<CardTitle className="text-xl font-semibold text-primary-foreground bg-primary rounded-t-md -m-6 p-4 mb-2">
-								Registre Despesas e Ganhos
-							</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<p className="text-muted-foreground">
-								Registre facilmente todas as suas transações, sejam despesas
-								diárias ou receitas. Mantenha um histórico detalhado de onde seu
-								dinheiro vem e para onde vai. Este é o primeiro passo para
-								entender seus hábitos financeiros.
-							</p>
-						</CardContent>
-					</Card>
-					<Card>
-						<CardHeader>
-							<CardTitle className="text-xl font-semibold text-primary-foreground bg-primary rounded-t-md -m-6 p-4 mb-2">
-								Acompanhe Seus Orçamentos
-							</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<p className="text-muted-foreground">
-								Configure orçamentos personalizados para diferentes categorias
-								de gastos (por exemplo, supermercado, entretenimento, contas). O
-								Valor Seguro ajuda você a monitorar seus gastos em relação a
-								esses orçamentos, enviando alertas para que você possa se manter
-								no caminho certo e evitar gastos excessivos.
-							</p>
-						</CardContent>
-					</Card>
-					<Card>
-						<CardHeader>
-							<CardTitle className="text-xl font-semibold text-primary-foreground bg-primary rounded-t-md -m-6 p-4 mb-2">
-								Monitore Sua Situação Financeira
-							</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<p className="text-muted-foreground">
-								Obtenha uma visão abrangente de sua saúde financeira com
-								gráficos e relatórios intuitivos. Entenda seu patrimônio
-								líquido, fluxo de caixa e padrões de gastos rapidamente. Tome
-								decisões baseadas em dados para melhorar seu bem-estar
-								financeiro.
-							</p>
-						</CardContent>
-					</Card>
-				</div>
+				<BentoGrid className="gap-8">
+					<BentoCard
+						name="Registre Despesas e Ganhos"
+						description="Registre facilmente todas as suas transações, sejam despesas diárias ou receitas. Mantenha um histórico detalhado de onde seu dinheiro vem e para onde vai."
+						background={<div className="absolute inset-0" />}
+						className="col-span-3 lg:col-span-1 bg-card border-border"
+						Icon={TrendingDown}
+					/>
+
+					<BentoCard
+						name="Acompanhe Seus Orçamentos"
+						description="Configure orçamentos personalizados para diferentes categorias de gastos. O Valor Seguro ajuda você a monitorar seus gastos em relação a esses orçamentos."
+						background={<div className="absolute inset-0" />}
+						className="col-span-3 lg:col-span-1 bg-card border-border"
+						Icon={Target}
+					/>
+
+					<BentoCard
+						name="Monitore Sua Situação Financeira"
+						description="Obtenha uma visão abrangente de sua saúde financeira com gráficos e relatórios intuitivos. Entenda seu patrimônio líquido e fluxo de caixa."
+						background={<div className="absolute inset-0" />}
+						className="col-span-3 lg:col-span-1 bg-card border-border"
+						Icon={BarChart}
+					/>
+				</BentoGrid>
 			</section>
 
 			<section className="text-center">

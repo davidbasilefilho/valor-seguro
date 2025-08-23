@@ -81,6 +81,13 @@
 
 :root {
 	--radius: 1rem;
+	/* Font tokens used by the app; can be overridden by a registry/theme */
+	--font-geist-sans:
+		ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+		"Helvetica Neue", Arial;
+	--font-geist-mono:
+		ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New",
+		monospace;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.141 0.005 285.823);
 	--card: oklch(1 0 0);

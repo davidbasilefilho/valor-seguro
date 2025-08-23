@@ -1,19 +1,19 @@
-import { BentoGrid, BentoCard } from "@/components/magicui/bento-grid";
-import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
 import {
 	Activity,
+	BarChart,
+	Target,
 	TrendingDown,
 	TrendingUp,
-	Target,
-	BarChart,
 } from "lucide-react";
+import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
+import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 
 export default function Home() {
 	const features = [
 		{
 			name: "Controle de Despesas",
 			description: "Registre e categorize suas despesas facilmente.",
-			href: "/",
+			href: "/about",
 			cta: "Saiba Mais",
 			className: "col-span-3 lg:col-span-1",
 			background: (
@@ -23,7 +23,7 @@ export default function Home() {
 		{
 			name: "Visualização de Ganhos",
 			description: "Acompanhe seus ganhos e fontes de renda.",
-			href: "/",
+			href: "/about",
 			cta: "Saiba Mais",
 			className: "col-span-3 lg:col-span-1",
 			background: (
@@ -33,7 +33,7 @@ export default function Home() {
 		{
 			name: "Orçamentos Inteligentes",
 			description: "Crie orçamentos para diferentes categorias e metas.",
-			href: "/",
+			href: "/about",
 			cta: "Saiba Mais",
 			className: "col-span-3 lg:col-span-1",
 			background: (
@@ -43,7 +43,7 @@ export default function Home() {
 		{
 			name: "Relatórios Gráficos",
 			description: "Visualize seus dados financeiros com gráficos interativos.",
-			href: "/",
+			href: "/about",
 			cta: "Saiba Mais",
 			className: "col-span-3 lg:col-span-3",
 			background: (
