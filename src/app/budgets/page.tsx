@@ -39,10 +39,10 @@ import {
 import { useSidebar } from "@/components/ui/sidebar";
 import { useAuthState, useAuthUserData } from "@/lib/auth";
 import { useDeleteTagById, useSelectTags } from "@/lib/db";
-import { TagSchemaType } from "@/lib/validation";
+import type { TagSchemaType } from "@/lib/validation";
 import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { Delete, Edit, EllipsisVertical, Plus } from "lucide-react";
 import Link from "next/link";

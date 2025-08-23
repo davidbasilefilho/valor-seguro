@@ -12,9 +12,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useForm } from "react-hook-form";
 import {
 	loginSchema,
-	LoginSchemaType,
+	type LoginSchemaType,
 	signUpSchema,
-	SignUpSchemaType,
+	type SignUpSchemaType,
 } from "@/lib/validation";
 import { useAuthSignIn, useAuthSignUp, useAuthState } from "@/lib/auth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

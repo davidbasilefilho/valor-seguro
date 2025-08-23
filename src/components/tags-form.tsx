@@ -1,5 +1,5 @@
 import { useInsertTag, useUpdateTagById } from "@/lib/db";
-import { tagSchema, TagSchemaType } from "@/lib/validation";
+import { tagSchema, type TagSchemaType } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";

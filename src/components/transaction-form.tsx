@@ -8,9 +8,9 @@ import {
 import { cn } from "@/lib/utils";
 import {
 	transactionSchema,
-	TransactionSchemaType,
+	type TransactionSchemaType,
 	transactionTagFormSchema,
-	TransactionTagFormSchemaType,
+	type TransactionTagFormSchemaType,
 } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";

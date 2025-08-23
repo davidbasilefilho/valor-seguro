@@ -1,7 +1,7 @@
-import { useMutation, useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { useMutation, useQuery, type UseQueryOptions } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { supabase } from "./db";
-import { LoginSchemaType, SignUpSchemaType } from "./validation";
+import type { LoginSchemaType, SignUpSchemaType } from "./validation";
 
 export const useAuthState = ({
 	refetchInterval = false,

@@ -45,10 +45,10 @@ import {
 	useSelectTransactionTagsJoin,
 	useSelectTransactionTypes,
 } from "@/lib/db";
-import { TransactionSchemaType } from "@/lib/validation";
+import type { TransactionSchemaType } from "@/lib/validation";
 import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { Delete, Edit, EllipsisVertical, Plus } from "lucide-react";
 import Link from "next/link";

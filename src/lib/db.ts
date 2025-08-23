@@ -1,14 +1,14 @@
-import { createClient } from "@/app/utils/supabase/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
-import {
+import { createClient } from "@/app/utils/supabase/client";
+import type {
 	BudgetInsertSchemaType,
 	BudgetSchemaType,
 	BudgetTagSchemaType,
-	tagInsertSchemaType,
 	TagSchemaType,
 	TransactionSchemaType,
 	TransactionTagSchemaType,
+	tagInsertSchemaType,
 } from "./validation";
 
 export const supabase = createClient();
