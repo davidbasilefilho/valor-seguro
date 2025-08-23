@@ -3,12 +3,12 @@
 import {
 	type ColumnDef,
 	type ColumnFiltersState,
-	type SortingState,
 	flexRender,
 	getCoreRowModel,
 	getFilteredRowModel,
 	getPaginationRowModel,
 	getSortedRowModel,
+	type SortingState,
 	useReactTable,
 } from "@tanstack/react-table";
 import * as React from "react";
@@ -113,7 +113,7 @@ export function DataTable<TData, TValue>({
 										colSpan={columns.length}
 										className="h-24 text-center"
 									>
-										No results.
+										Nenhum resultado.
 									</TableCell>
 								</TableRow>
 							)}

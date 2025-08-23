@@ -23,11 +23,11 @@ export function DataTablePagination<TData>({
 	table,
 }: DataTablePaginationProps<TData>) {
 	return (
-		<div className="flex items-center justify-between flex-wrap gap-2 px-2">
-			<div className="flex-1 text-sm text-muted-foreground">
+		<div className="flex items-center justify-end flex-wrap gap-2 px-2">
+			{/* <div className="flex-1 text-sm text-muted-foreground">
 				{table.getFilteredSelectedRowModel().rows.length} de{" "}
 				{table.getFilteredRowModel().rows.length} linha(s) selecionada(s).
-			</div>
+			</div> */}
 			<div className="flex items-center space-x-6 lg:space-x-8">
 				<div className="flex items-center space-x-2">
 					<p className="text-sm font-medium">Linhas por página</p>
@@ -43,7 +43,11 @@ export function DataTablePagination<TData>({
 						<SelectContent side="top">
 							{[10, 20, 30, 40, 50].map((pageSize) => (
 								<SelectItem key={pageSize} value={`${pageSize}`}>
+									{/* simple selected indicator (visible when radix sets data-state="checked") */}
 									{pageSize}
+									<span className="mr-2 opacity-0 data-[state=checked]:opacity-100">
+										✓
+									</span>
 								</SelectItem>
 							))}
 						</SelectContent>

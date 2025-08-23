@@ -4,7 +4,7 @@ import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 export default function About() {
 	return (
 		<div className="container mx-auto px-4 py-8">
-			<h1 className="text-4xl font-bold text-left md:text-left mb-12 text-primary">
+			<h1 className="text-4xl font-bold text-left md:text-left mb-8 text-primary">
 				Sobre o Valor Seguro
 			</h1>
 
@@ -54,7 +54,7 @@ export default function About() {
 				</BentoGrid>
 			</section>
 
-			<section className="text-center">
+			<section className="mt-auto">
 				<h2 className="text-2xl font-semibold mb-4 text-accent-foreground">
 					Comece Sua Jornada para a Clareza Financeira Hoje!
 				</h2>

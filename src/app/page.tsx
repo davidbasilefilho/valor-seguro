@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
 	const features = [
@@ -61,7 +62,16 @@ export default function Home() {
 
 	return (
 		<div className="flex flex-col h-full">
-			<main className="flex-1 flex flex-col items-center justify-center p-4 md:p-4 pt-4 sm:pt-6 md:pt-8 lg:pt-10">
+			{/* Blurry gradient background blobs (Home only) - top-focused, uniform spacing */}
+			<div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+				{/* center-top blob (smaller and less opaque on small screens) */}
+				<div className="absolute left-1/2 -top-36 translate-x-[-50%] w-[28rem] h-[28rem] sm:w-[36rem] sm:h-[36rem] md:w-[44rem] md:h-[44rem] lg:w-[56rem] lg:h-[56rem] rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 opacity-6 sm:opacity-10 md:opacity-12 dark:opacity-6 blur-[80px] sm:blur-[120px] md:blur-[160px] lg:blur-[200px] dark:blur-[800px] transform-gpu" />
+				{/* left-top blob (smaller and less opaque on small screens) */}
+				<div className="absolute -left-16 -top-28 w-[22rem] h-[22rem] sm:w-[32rem] sm:h-[32rem] md:w-[40rem] md:h-[40rem] lg:w-[48rem] lg:h-[48rem] rounded-full bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 opacity-6 sm:opacity-10 md:opacity-12 dark:opacity-6 blur-[80px] sm:blur-[120px] md:blur-[160px] lg:blur-[200px] dark:blur-[800px] transform-gpu rotate-12" />
+				{/* right-top blob (smaller and less opaque on small screens) */}
+				<div className="absolute -right-16 -top-24 w-[20rem] h-[20rem] sm:w-[30rem] sm:h-[30rem] md:w-[36rem] md:h-[36rem] lg:w-[44rem] lg:h-[44rem] rounded-full bg-gradient-to-tr from-cyan-400 via-teal-500 to-green-600 opacity-6 sm:opacity-10 md:opacity-12 dark:opacity-6 blur-[80px] sm:blur-[120px] md:blur-[160px] lg:blur-[200px] dark:blur-[800px] transform-gpu -rotate-6" />
+			</div>
+			<main className="relative flex-1 flex flex-col items-center justify-center p-4 md:p-4 pt-4 sm:pt-6 md:pt-8 lg:pt-10">
 				<div className="z-10 items-center justify-center">
 					<AnimatedGradientText
 						className="text-4xl md:text-6xl font-bold leading-7 text-center"
@@ -72,7 +82,7 @@ export default function Home() {
 					</AnimatedGradientText>
 				</div>
 
-				<p className="text-lg md:text-xl text-center mt-4 md:mt-6 lg:mt-8 mb-8 md:mb-12 lg:mb-16 max-w-2xl text-muted-foreground">
+				<p className="text-lg md:text-xl text-left md:text-center mt-4 md:mt-6 lg:mt-8 mb-8 md:mb-12 lg:mb-16 max-w-2xl text-muted-foreground">
 					Gerencie suas finanças pessoais de forma inteligente e visual com o
 					Valor Seguro. Acompanhe despesas, ganhos e orçamentos com tabelas
 					detalhadas e mantenha o controle total do seu dinheiro.
@@ -87,7 +97,7 @@ export default function Home() {
 							href={feature.href}
 							cta={feature.cta}
 							background={cardBackground}
-							className={`${feature.className} ${commonCardClassName}`}
+							className={cn(feature.className, commonCardClassName)}
 							Icon={() => {
 								if (idx === 0)
 									return <TrendingDown className="h-6 w-6 text-primary" />;

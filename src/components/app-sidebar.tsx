@@ -1,10 +1,6 @@
+/** biome-ignore-all lint/complexity/noUselessFragments: errors without it */
 "use client";
-import Link from "next/link";
 
-import { ModeToggle } from "@/components/mode-toggle";
-import { buttonVariants } from "@/components/ui/button";
-import * as Sidebar from "@/components/ui/sidebar";
-import { useAuthSignOut, useAuthUserData } from "@/lib/auth";
 import {
 	QueryClient,
 	QueryClientProvider,
@@ -19,6 +15,12 @@ import {
 	Mountain,
 	Tag,
 } from "lucide-react";
+import Link from "next/link";
+import { ModeToggle } from "@/components/mode-toggle";
+import { buttonVariants } from "@/components/ui/button";
+import * as Sidebar from "@/components/ui/sidebar";
+import { useAuthSignOut, useAuthUserData } from "@/lib/auth";
+import { cn } from "@/lib/utils";
 import { LoadingSpinner } from "./loading-spinner";
 import { Separator } from "./ui/separator";
 
@@ -45,7 +47,14 @@ export function AppSidebarContent() {
 	return (
 		<Sidebar.Sidebar variant={"inset"} collapsible="icon">
 			<Sidebar.SidebarContent>
-				<Sidebar.SidebarMenu className="flex flex-col items-stretch">
+				<Sidebar.SidebarMenu
+					className={cn(
+						"flex flex-col",
+						!isMobile && state === "collapsed"
+							? "items-center"
+							: "items-stretch",
+					)}
+				>
 					<Sidebar.SidebarMenuItem>
 						<Sidebar.SidebarMenuButton asChild>
 							<Link className="font-semibold text-lg" href="/">

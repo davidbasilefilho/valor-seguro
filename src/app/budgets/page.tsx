@@ -1,4 +1,11 @@
 "use client";
+import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
+import { Delete, Edit, EllipsisVertical, Plus } from "lucide-react";
+import Link from "next/link";
+import { toast } from "sonner";
 import { LoadingSpinner } from "@/components/loading-spinner";
 import TagsForm from "@/components/tags-form";
 import {
@@ -21,6 +28,13 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import {
+	Drawer,
+	DrawerContent,
+	DrawerDescription,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/components/ui/drawer";
+import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuGroup,
@@ -40,13 +54,6 @@ import { useSidebar } from "@/components/ui/sidebar";
 import { useAuthState, useAuthUserData } from "@/lib/auth";
 import { useDeleteTagById, useSelectTags } from "@/lib/db";
 import type { TagSchemaType } from "@/lib/validation";
-import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import type { ColumnDef } from "@tanstack/react-table";
-import { format } from "date-fns";
-import { Delete, Edit, EllipsisVertical, Plus } from "lucide-react";
-import Link from "next/link";
-import { toast } from "sonner";
 
 const queryClient = new QueryClient();
 export default function BudgetsPage() {
@@ -128,8 +135,8 @@ function BudgetsPageContent() {
 								{isMobile ? (
 									<>
 										<DropdownMenuItem asChild>
-											<Dialog>
-												<DialogTrigger
+											<Drawer>
+												<DrawerTrigger
 													className={buttonVariants({
 														variant: "ghost",
 														className: "w-full justify-between!",
@@ -137,15 +144,15 @@ function BudgetsPageContent() {
 												>
 													Editar
 													<Edit className="text-muted-foreground w-2 h-2" />
-												</DialogTrigger>
-												<DialogContent className="px-4 py-4">
-													<DialogTitle>
+												</DrawerTrigger>
+												<DrawerContent className="px-4 pb-4">
+													<DrawerTitle className="mb-2 mt-4">
 														Editar rótulo &quot;{row.getValue("title")}&quot;
-													</DialogTitle>
-													<DialogDescription>
+													</DrawerTitle>
+													<DrawerDescription className="mb-4">
 														Use este formulário para editar um rótulo existente,
 														para categorizar suas transações e orçamentos.
-													</DialogDescription>
+													</DrawerDescription>
 													<TagsForm
 														tag={{
 															user_id: row.getValue("user_id"),
@@ -155,8 +162,8 @@ function BudgetsPageContent() {
 														}}
 														onSubmitForm={tags.refetch}
 													/>
-												</DialogContent>
-											</Dialog>
+												</DrawerContent>
+											</Drawer>
 										</DropdownMenuItem>
 
 										<DropdownMenuItem asChild>
@@ -327,21 +334,21 @@ function BudgetsPageContent() {
 				<h1 className="text-3xl font-bold">Rótulos</h1>
 				<div className="flex flex-col items-center justify-center">
 					{isMobile ? (
-						<Dialog>
-							<DialogTrigger asChild>
+						<Drawer>
+							<DrawerTrigger asChild>
 								<Button variant={"outline"} size={isMobile ? "icon" : "lg"}>
 									<Plus />
 								</Button>
-							</DialogTrigger>
-							<DialogContent className="px-4 py-8">
-								<DialogTitle>Adicionar rótulo</DialogTitle>
-								<DialogDescription>
+							</DrawerTrigger>
+							<DrawerContent className="px-4 py-8">
+								<DrawerTitle>Adicionar rótulo</DrawerTitle>
+								<DrawerDescription>
 									Use este formulário para adicionar um novo rótulo, para
 									categorizar suas transações e orçamentos.
-								</DialogDescription>
+								</DrawerDescription>
 								<TagsForm tag={null} onSubmitForm={tags.refetch} />
-							</DialogContent>
-						</Dialog>
+							</DrawerContent>
+						</Drawer>
 					) : (
 						<Sheet>
 							<SheetTrigger asChild>

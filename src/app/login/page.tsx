@@ -1,4 +1,14 @@
 "use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Eye, EyeClosed } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { LoadingSpinner } from "@/components/loading-spinner";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
 	Form,
 	FormControl,
@@ -7,25 +17,15 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useForm } from "react-hook-form";
-import {
-	loginSchema,
-	type LoginSchemaType,
-	signUpSchema,
-	type SignUpSchemaType,
-} from "@/lib/validation";
-import { useAuthSignIn, useAuthSignUp, useAuthState } from "@/lib/auth";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Eye, EyeClosed } from "lucide-react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { LoadingSpinner } from "@/components/loading-spinner";
-import Link from "next/link";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useAuthSignIn, useAuthSignUp, useAuthState } from "@/lib/auth";
+import {
+	type LoginSchemaType,
+	loginSchema,
+	type SignUpSchemaType,
+	signUpSchema,
+} from "@/lib/validation";
 
 export default function LoginPage() {
 	return (

@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import {
 	SidebarInset,
 	SidebarProvider,
 	SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -33,7 +34,11 @@ export default function RootLayout({
 	return (
 		<html lang="pt-BR" suppressHydrationWarning>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={cn(
+					geistSans.variable,
+					geistMono.variable,
+					"antialiased text-pretty",
+				)}
 			>
 				<ThemeProvider
 					attribute="class"
@@ -43,9 +48,9 @@ export default function RootLayout({
 				>
 					<SidebarProvider>
 						<AppSidebar />
-						<SidebarInset className="bg-gradient-to-br from-background via-accent/0 to-background">
-							<SidebarTrigger className="ml-4 mt-4 mr-6 mb-6" />
-							<main>{children}</main>
+						<SidebarInset>
+							<SidebarTrigger className="absolute z-20 top-4 left-4" />
+							<main className="mt-12 md:mt-8">{children}</main>
 							<Toaster />
 						</SidebarInset>
 					</SidebarProvider>

@@ -1,4 +1,11 @@
 "use client";
+import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
+import { Delete, Edit, EllipsisVertical, Plus } from "lucide-react";
+import Link from "next/link";
+import { toast } from "sonner";
 import { LoadingSpinner } from "@/components/loading-spinner";
 import TagsForm from "@/components/tags-form";
 import TransactionForm from "@/components/transaction-form";
@@ -21,6 +28,13 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+	Drawer,
+	DrawerContent,
+	DrawerDescription,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/components/ui/drawer";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -46,13 +60,6 @@ import {
 	useSelectTransactionTypes,
 } from "@/lib/db";
 import type { TransactionSchemaType } from "@/lib/validation";
-import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import type { ColumnDef } from "@tanstack/react-table";
-import { format } from "date-fns";
-import { Delete, Edit, EllipsisVertical, Plus } from "lucide-react";
-import Link from "next/link";
-import { toast } from "sonner";
 
 const queryClient = new QueryClient();
 export default function TransactionPage() {
@@ -193,8 +200,8 @@ function TransactionPageContent() {
 								{isMobile ? (
 									<>
 										<DropdownMenuItem asChild>
-											<Dialog>
-												<DialogTrigger
+											<Drawer>
+												<DrawerTrigger
 													className={buttonVariants({
 														variant: "ghost",
 														className: "w-full justify-between!",
@@ -202,16 +209,16 @@ function TransactionPageContent() {
 												>
 													Editar
 													<Edit className="text-muted-foreground w-2 h-2" />
-												</DialogTrigger>
-												<DialogContent className="px-4 py-4">
-													<DialogTitle>
+												</DrawerTrigger>
+												<DrawerContent className="px-4 py-4">
+													<DrawerTitle>
 														Editar rótulo &quot;{row.getValue("title")}&quot;
-													</DialogTitle>
-													<DialogDescription>
+													</DrawerTitle>
+													<DrawerDescription>
 														Use este formulário para editar uma transação
 														existente, para categorizar suas transações e
 														orçamentos.
-													</DialogDescription>
+													</DrawerDescription>
 													<TransactionForm
 														transaction={{
 															user_id: row.getValue("user_id"),
@@ -225,8 +232,8 @@ function TransactionPageContent() {
 														}}
 														onSubmitForm={transactions.refetch}
 													/>
-												</DialogContent>
-											</Dialog>
+												</DrawerContent>
+											</Drawer>
 										</DropdownMenuItem>
 
 										<DropdownMenuItem asChild>
@@ -403,24 +410,24 @@ function TransactionPageContent() {
 				<h1 className="text-3xl font-bold">Transações</h1>
 				<div className="flex flex-col items-center justify-center">
 					{isMobile ? (
-						<Dialog>
-							<DialogTrigger asChild>
+						<Drawer>
+							<DrawerTrigger asChild>
 								<Button variant={"outline"} size={isMobile ? "icon" : "lg"}>
 									<Plus />
 								</Button>
-							</DialogTrigger>
-							<DialogContent className="px-4 py-8">
-								<DialogTitle>Adicionar transação</DialogTitle>
-								<DialogDescription>
+							</DrawerTrigger>
+							<DrawerContent className="px-4 py-8">
+								<DrawerTitle>Adicionar transação</DrawerTitle>
+								<DrawerDescription>
 									Use este formulário para adicionar uma nova transação, para
 									categorizar suas transações e orçamentos.
-								</DialogDescription>
+								</DrawerDescription>
 								<TransactionForm
 									transaction={null}
 									onSubmitForm={transactions.refetch}
 								/>
-							</DialogContent>
-						</Dialog>
+							</DrawerContent>
+						</Drawer>
 					) : (
 						<Sheet>
 							<SheetTrigger asChild>

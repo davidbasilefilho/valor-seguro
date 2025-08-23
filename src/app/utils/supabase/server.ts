@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/useIterableCallbackReturn: code provided by supabase */
 import { createServerClient } from "@supabase/ssr";
 import type { cookies } from "next/headers";
 import type { Database } from "../../../../database.types";

@@ -1,5 +1,7 @@
+/** biome-ignore-all lint/suspicious/useIterableCallbackReturn: code provided by supabase */
+/** biome-ignore-all lint/correctness/noUnusedVariables: code provided by supabase */
 import { createServerClient } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import type { Database } from "../../../../database.types";
 
 export const createClient = (request: NextRequest) => {
@@ -19,7 +21,7 @@ export const createClient = (request: NextRequest) => {
 					return request.cookies.getAll();
 				},
 				setAll(cookiesToSet) {
-					cookiesToSet.forEach(({ name, value, options }) =>
+					cookiesToSet.forEach(({ name, value }) =>
 						request.cookies.set(name, value),
 					);
 					supabaseResponse = NextResponse.next({
