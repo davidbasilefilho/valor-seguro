@@ -29,6 +29,11 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import {
 	Drawer,
 	DrawerContent,
 	DrawerDescription,
@@ -52,6 +57,7 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { useSidebar } from "@/components/ui/sidebar";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useAuthState, useAuthUserData } from "@/lib/auth";
 import {
 	useDeleteTransactionById,
@@ -80,6 +86,7 @@ function TransactionPageContent() {
 	const { data } = useAuthUserData({ refetchInterval: 5000 });
 
 	const { isMobile } = useSidebar();
+	const isMobileDevice = useIsMobile();
 
 	const transactionColumns: ColumnDef<TransactionSchemaType>[] = [
 		{
@@ -103,18 +110,30 @@ function TransactionPageContent() {
 			accessorKey: "id",
 			header: "ID",
 			cell: ({ row }) => {
-				return (
-					<Dialog>
-						<DialogTrigger className={buttonVariants({ variant: "outline" })}>
+				return isMobileDevice ? (
+					<Drawer>
+						<DrawerTrigger className={buttonVariants({ variant: "outline" })}>
 							Ver ID
-						</DialogTrigger>
-						<DialogContent className="px-4 py-8" variant="blurry">
-							<DialogTitle>ID da transação</DialogTitle>
-							<DialogDescription>
+						</DrawerTrigger>
+						<DrawerContent className="px-4 py-8" variant="blurry">
+							<DrawerTitle>ID da transação</DrawerTitle>
+							<DrawerDescription>
 								O ID da transação é: {row.getValue("id")}
-							</DialogDescription>
-						</DialogContent>
-					</Dialog>
+							</DrawerDescription>
+						</DrawerContent>
+					</Drawer>
+				) : (
+					<Popover>
+						<PopoverTrigger className={buttonVariants({ variant: "outline" })}>
+							Ver ID
+						</PopoverTrigger>
+						<PopoverContent variant="blurry">
+							<p className="text-sm font-medium">ID da transação</p>
+							<p className="text-sm text-muted-foreground">
+								O ID da transação é: {row.getValue("id")}
+							</p>
+						</PopoverContent>
+					</Popover>
 				);
 			},
 		},

@@ -28,6 +28,11 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import {
 	Drawer,
 	DrawerContent,
 	DrawerDescription,
@@ -51,6 +56,7 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { useSidebar } from "@/components/ui/sidebar";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useAuthState, useAuthUserData } from "@/lib/auth";
 import { useDeleteTagById, useSelectTags } from "@/lib/db";
 import type { TagSchemaType } from "@/lib/validation";
@@ -71,6 +77,7 @@ function BudgetsPageContent() {
 	const { data } = useAuthUserData({ refetchInterval: 5000 });
 
 	const { isMobile } = useSidebar();
+	const isMobileDevice = useIsMobile();
 
 	const tagColumns: ColumnDef<TagSchemaType>[] = [
 		{
@@ -94,18 +101,30 @@ function BudgetsPageContent() {
 			accessorKey: "id",
 			header: "ID",
 			cell: ({ row }) => {
-				return (
-					<Dialog>
-						<DialogTrigger className={buttonVariants({ variant: "outline" })}>
+				return isMobileDevice ? (
+					<Drawer>
+						<DrawerTrigger className={buttonVariants({ variant: "outline" })}>
 							Ver ID
-						</DialogTrigger>
-						<DialogContent className="px-4 py-8" variant="blurry">
-							<DialogTitle>Rótulo ID</DialogTitle>
-							<DialogDescription>
+						</DrawerTrigger>
+						<DrawerContent className="px-4 py-8" variant="blurry">
+							<DrawerTitle>Rótulo ID</DrawerTitle>
+							<DrawerDescription>
 								O ID do rótulo é: {row.getValue("id")}
-							</DialogDescription>
-						</DialogContent>
-					</Dialog>
+							</DrawerDescription>
+						</DrawerContent>
+					</Drawer>
+				) : (
+					<Popover>
+						<PopoverTrigger className={buttonVariants({ variant: "outline" })}>
+							Ver ID
+						</PopoverTrigger>
+						<PopoverContent variant="blurry">
+							<p className="text-sm font-medium">Rótulo ID</p>
+							<p className="text-sm text-muted-foreground">
+								O ID do rótulo é: {row.getValue("id")}
+							</p>
+						</PopoverContent>
+					</Popover>
 				);
 			},
 		},
