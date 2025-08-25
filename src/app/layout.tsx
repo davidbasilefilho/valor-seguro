@@ -49,7 +49,7 @@ export default function RootLayout({
 					<SidebarProvider>
 						<AppSidebar />
 						<SidebarInset>
-							<SidebarTrigger className="absolute z-20 top-4 left-4" variant="blurry" />
+							<SidebarTrigger className="fixed z-20 top-4 left-4" variant="blurry" />
 							<main className="mt-12 md:mt-8">{children}</main>
 							<Toaster variant="blurry" />
 						</SidebarInset>
