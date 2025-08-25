@@ -155,7 +155,7 @@ export function AppSidebarContent() {
 									<Sidebar.SidebarMenuItem>
 										<Sidebar.SidebarMenuButton
 											onClick={() => logoutUser()}
-											className="flex cursor-pointer flex-row justify-around w-full border bg-transparent"
+											className="flex cursor-pointer flex-row justify-around w-full border bg-transparent h-8"
 										>
 											<LogOut />
 											{userData.data?.username}
@@ -171,7 +171,7 @@ export function AppSidebarContent() {
 										<Sidebar.SidebarMenuButton asChild>
 											<Link
 												href="/login"
-												className={buttonVariants({ variant: "outline" })}
+												className={buttonVariants({ variant: "outline", size: "icon", className: "size-8" })}
 											>
 												<LogIn />
 											</Link>
