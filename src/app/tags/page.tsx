@@ -99,7 +99,7 @@ function TagsPageContent() {
 						<DialogTrigger className={buttonVariants({ variant: "outline" })}>
 							Ver ID
 						</DialogTrigger>
-						<DialogContent className="px-4 py-8">
+						<DialogContent className="px-4 py-8" variant="blurry">
 							<DialogTitle>Rótulo ID</DialogTitle>
 							<DialogDescription>
 								O ID do rótulo é: {row.getValue("id")}
@@ -128,7 +128,7 @@ function TagsPageContent() {
 								<EllipsisVertical />
 							</Button>
 						</DropdownMenuTrigger>
-						<DropdownMenuContent>
+						<DropdownMenuContent variant="blurry">
 							<DropdownMenuLabel>Ações</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuGroup>
@@ -145,7 +145,7 @@ function TagsPageContent() {
 													Editar
 													<Edit className="text-muted-foreground w-2 h-2" />
 												</DrawerTrigger>
-												<DrawerContent className="px-4 py-4">
+												<DrawerContent className="px-4 py-4" variant="blurry">
 													<DrawerTitle>
 														Editar rótulo &quot;{row.getValue("title")}&quot;
 													</DrawerTitle>
@@ -178,7 +178,7 @@ function TagsPageContent() {
 													</Button>
 												</AlertDialogTrigger>
 
-												<AlertDialogContent>
+												<AlertDialogContent variant="blurry">
 													<AlertDialogHeader>
 														<AlertDialogTitle>
 															Você tem certeza?
@@ -222,7 +222,7 @@ function TagsPageContent() {
 													Editar
 													<Edit className="text-muted-foreground w-2 h-2" />
 												</SheetTrigger>
-												<SheetContent className="px-4 py-4">
+												<SheetContent className="px-4 py-4" variant="blurry">
 													<SheetTitle>
 														Editar rótulo &quot;{row.getValue("title")}&quot;
 													</SheetTitle>
@@ -255,7 +255,7 @@ function TagsPageContent() {
 													</Button>
 												</AlertDialogTrigger>
 
-												<AlertDialogContent>
+												<AlertDialogContent variant="blurry">
 													<AlertDialogHeader>
 														<AlertDialogTitle>
 															Você tem certeza?
@@ -341,7 +341,7 @@ function TagsPageContent() {
 									<Plus />
 								</Button>
 							</DrawerTrigger>
-							<DrawerContent className="px-4 py-8">
+							<DrawerContent className="px-4 py-8" variant="blurry">
 								<DrawerTitle>Adicionar rótulo</DrawerTitle>
 								<DrawerDescription>
 									Use este formulário para adicionar um novo rótulo, para
@@ -357,7 +357,7 @@ function TagsPageContent() {
 									{isMobile ? <Plus /> : "Adicionar rótulo"}
 								</Button>
 							</SheetTrigger>
-							<SheetContent className="px-4 py-4">
+							<SheetContent className="px-4 py-4" variant="blurry">
 								<SheetTitle>Adicionar rótulo</SheetTitle>
 								<SheetDescription>
 									Use este formulário para adicionar um novo rótulo, para

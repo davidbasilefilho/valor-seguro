@@ -99,7 +99,7 @@ function BudgetsPageContent() {
 						<DialogTrigger className={buttonVariants({ variant: "outline" })}>
 							Ver ID
 						</DialogTrigger>
-						<DialogContent className="px-4 py-8">
+						<DialogContent className="px-4 py-8" variant="blurry">
 							<DialogTitle>Rótulo ID</DialogTitle>
 							<DialogDescription>
 								O ID do rótulo é: {row.getValue("id")}
@@ -128,7 +128,7 @@ function BudgetsPageContent() {
 								<EllipsisVertical />
 							</Button>
 						</DropdownMenuTrigger>
-						<DropdownMenuContent>
+						<DropdownMenuContent variant="blurry">
 							<DropdownMenuLabel>Ações</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuGroup>
@@ -145,7 +145,7 @@ function BudgetsPageContent() {
 													Editar
 													<Edit className="text-muted-foreground w-2 h-2" />
 												</DrawerTrigger>
-												<DrawerContent className="px-4 pb-4">
+												<DrawerContent className="px-4 pb-4" variant="blurry">
 													<DrawerTitle className="mb-2 mt-4">
 														Editar rótulo &quot;{row.getValue("title")}&quot;
 													</DrawerTitle>
@@ -178,7 +178,7 @@ function BudgetsPageContent() {
 													</Button>
 												</AlertDialogTrigger>
 
-												<AlertDialogContent>
+												<AlertDialogContent variant="blurry">
 													<AlertDialogHeader>
 														<AlertDialogTitle>
 															Você tem certeza?
@@ -221,7 +221,7 @@ function BudgetsPageContent() {
 													Editar
 													<Edit className="text-muted-foreground w-2 h-2" />
 												</SheetTrigger>
-												<SheetContent className="px-4 py-4">
+												<SheetContent className="px-4 py-4" variant="blurry">
 													<SheetTitle>
 														Editar rótulo &quot;{row.getValue("title")}&quot;
 													</SheetTitle>
@@ -254,7 +254,7 @@ function BudgetsPageContent() {
 													</Button>
 												</AlertDialogTrigger>
 
-												<AlertDialogContent>
+												<AlertDialogContent variant="blurry">
 													<AlertDialogHeader>
 														<AlertDialogTitle>
 															Você tem certeza?
@@ -340,7 +340,7 @@ function BudgetsPageContent() {
 									<Plus />
 								</Button>
 							</DrawerTrigger>
-							<DrawerContent className="px-4 py-8">
+							<DrawerContent className="px-4 py-8" variant="blurry">
 								<DrawerTitle>Adicionar rótulo</DrawerTitle>
 								<DrawerDescription>
 									Use este formulário para adicionar um novo rótulo, para
@@ -356,7 +356,7 @@ function BudgetsPageContent() {
 									{isMobile ? <Plus /> : "Adicionar rótulo"}
 								</Button>
 							</SheetTrigger>
-							<SheetContent className="px-4 py-4">
+							<SheetContent className="px-4 py-4" variant="blurry">
 								<SheetTitle>Adicionar rótulo</SheetTitle>
 								<SheetDescription>
 									Use este formulário para adicionar um novo rótulo, para

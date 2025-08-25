@@ -51,7 +51,7 @@ export default function RootLayout({
 						<SidebarInset>
 							<SidebarTrigger className="absolute z-20 top-4 left-4" variant="blurry" />
 							<main className="mt-12 md:mt-8">{children}</main>
-							<Toaster />
+							<Toaster variant="blurry" />
 						</SidebarInset>
 					</SidebarProvider>
 				</ThemeProvider>
