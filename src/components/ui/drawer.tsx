@@ -31,13 +31,19 @@ function DrawerClose({
 
 function DrawerOverlay({
 	className,
+	variant = "default",
 	...props
-}: React.ComponentProps<typeof DrawerPrimitive.Overlay>) {
+}: React.ComponentProps<typeof DrawerPrimitive.Overlay> & {
+	variant?: "default" | "blurry";
+}) {
 	return (
 		<DrawerPrimitive.Overlay
 			data-slot="drawer-overlay"
 			className={cn(
-				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50",
+				variant === "blurry" 
+					? "bg-black/30 backdrop-blur-md" 
+					: "bg-black/50",
 				className,
 			)}
 			{...props}
@@ -48,15 +54,21 @@ function DrawerOverlay({
 function DrawerContent({
 	className,
 	children,
+	variant = "default",
 	...props
-}: React.ComponentProps<typeof DrawerPrimitive.Content>) {
+}: React.ComponentProps<typeof DrawerPrimitive.Content> & {
+	variant?: "default" | "blurry";
+}) {
 	return (
 		<DrawerPortal data-slot="drawer-portal">
-			<DrawerOverlay />
+			<DrawerOverlay variant={variant} />
 			<DrawerPrimitive.Content
 				data-slot="drawer-content"
 				className={cn(
-					"group/drawer-content bg-background fixed z-50 flex h-auto flex-col",
+					"group/drawer-content fixed z-50 flex h-auto flex-col",
+					variant === "blurry" 
+						? "bg-background/90 backdrop-blur-sm" 
+						: "bg-background",
 					"data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-lg data-[vaul-drawer-direction=top]:border-b",
 					"data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-t-lg data-[vaul-drawer-direction=bottom]:border-t",
 					"data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=right]:border-l data-[vaul-drawer-direction=right]:sm:max-w-sm",
