@@ -67,7 +67,7 @@ function SheetContent({
 				className={cn(
 					"data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
 					variant === "blurry" 
-						? "bg-background/60 backdrop-blur-lg" 
+						? "bg-background/80 backdrop-blur-lg" 
 						: "bg-background",
 					side === "right" &&
 						"data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
