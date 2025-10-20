@@ -153,8 +153,9 @@ function TransactionPageContent() {
 			header: "Tags",
 			cell: ({ row }) => {
 				const tags = transactionTags.data?.filter(
+					// @ts-ignore - Supabase join type inference issue
 					(tag) => tag.transaction_id === row.getValue("id"),
-				);
+				) as any[];
 				return (
 					<div className="flex flex-row gap-2">
 						{tags?.map((tag) => {

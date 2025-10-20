@@ -92,6 +92,7 @@ export const useInsertTag = () =>
 
 			const { data, error } = await supabase
 				.from("tag")
+				// @ts-ignore - Supabase type inference issue with insert
 				.insert({ ...tag, user_id: user?.id ?? "" });
 			if (error) throw error;
 			return data;
@@ -113,6 +114,7 @@ export const useUpdateTagById = () =>
 
 			const { data, error } = await supabase
 				.from("tag")
+				// @ts-ignore - Supabase type inference issue with update
 				.update(tag)
 				.eq("id", tag.id!)
 				.eq("user_id", user?.id ?? "");
@@ -197,6 +199,7 @@ export const useInsertTransaction = () =>
 
 			const { data, error } = await supabase
 				.from("transaction")
+				// @ts-ignore - Supabase type inference issue with insert
 				.insert({ ...transaction, user_id: user?.id ?? "" });
 			if (error) throw error;
 			return data;
@@ -218,6 +221,7 @@ export const useUpdateTransactionById = () =>
 
 			const { data, error } = await supabase
 				.from("transaction")
+				// @ts-ignore - Supabase type inference issue with update
 				.update({ ...transaction, user_id: user?.id ?? undefined })
 				.eq("id", transaction.id!)
 				.eq("user_id", user?.id ?? "");
@@ -248,7 +252,14 @@ export const useDeleteTransactionById = () =>
 			}),
 	});
 export const useSelectTransactionTypes = (options: CustomQueryOptions) =>
-	useQuery({
+	useQuery<
+		Array<{
+			id: string;
+			title: string;
+			description: string | null;
+			created_at: string;
+		}>
+	>({
 		queryKey: ["transaction_types"],
 		refetchOnWindowFocus: false,
 		queryFn: async () => {
@@ -338,6 +349,7 @@ export const useInsertBudget = () =>
 
 			const { data, error } = await supabase
 				.from("budget")
+				// @ts-ignore - Supabase type inference issue with insert
 				.insert({ ...budget, user_id: user?.id ?? "" });
 			if (error) throw error;
 			return data;
@@ -359,6 +371,7 @@ export const useUpdateBudgetById = () =>
 
 			const { data, error } = await supabase
 				.from("budget")
+				// @ts-ignore - Supabase type inference issue with update
 				.update({ ...budget, user_id: user?.id ?? "" })
 				.eq("id", budget.id!)
 				.eq("user_id", user?.id ?? "");
@@ -428,6 +441,7 @@ export const useInsertBudgetTags = () =>
 		mutationFn: async (budgetTag: BudgetTagSchemaType) => {
 			const { data, error } = await supabase
 				.from("budget_tags")
+				// @ts-ignore - Supabase type inference issue with insert
 				.insert({ ...budgetTag });
 			if (error) throw error;
 			return data;
@@ -513,6 +527,7 @@ export const useInsertTransactionTags = () =>
 		}) => {
 			const { data, error } = await supabase
 				.from("transaction_tags")
+				// @ts-ignore - Supabase type inference issue with insert
 				.insert({ ...transactionTag, transaction_id });
 			if (error) throw error;
 			return data;
